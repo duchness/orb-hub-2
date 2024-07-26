@@ -1,14 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Lessons from "./Lessons.jsx";
-import Header from "./Header.jsx";
-import Footer from "./Footer.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./routes/root";
+import ErrorPage from "./routes/error-page";
+import OrbUniversity from "./orb-university/orb-university";
 import "./index.css";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/orb-university",
+    element: <OrbUniversity />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Header />
-    <Lessons />
-    <Footer />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
